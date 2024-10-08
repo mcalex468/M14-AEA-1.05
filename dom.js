@@ -30,31 +30,75 @@ estil.style.color = "red";
 estil.style.fontSize = "20px";
 });
 
-// 3
-// 
+//Ex 3
+// Crear el formulario y sus elementos
 var form = document.createElement('form');
 form.id = 'form';
 
-// Crear el campo de texto
 var input = document.createElement('input');
 input.type = 'text';
 
-// Crear el botón de envío
 var button = document.createElement('button');
-button.type = 'submit';
+button.type = 'submit'; // Mantenerlo como submit para que el evento submit funcione correctamente
 button.textContent = 'Enviar';
 
+// Añadir los elementos al formulario y luego al contenedor
 document.getElementById('container').appendChild(form);
 form.appendChild(input);
 form.appendChild(button);
 
-//button.addEventListener('click', function() {
-//var nouParagraf = document.createElement('p');
-//nouParagraf.textContent = input.value;
-//});
-//resultat.appendChild(nouParagraf);
+// Crear un contenedor para mostrar el resultado
+var resultat = document.createElement('div');
+document.body.appendChild(resultat);
 
-// 4
+// Manejar el evento submit del formulario
+form.addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevenir que el formulario recargue la página
+    var nouParagraf = document.createElement('p');
+    nouParagraf.textContent = input.value; // Asignar el valor del input al párrafo
+    resultat.appendChild(nouParagraf); // Añadir el párrafo al contenedor de resultados
+    input.value = ''; // Limpiar el campo de texto después de enviar
+});
 
 
-  
+// Ex 4
+// Crear el formulario con un campo de texto y un botón para añadir suggeriments
+// Ex 4 //
+const creacio = document.createElement('input');
+creacio.type = 'text';
+creacio.placeholder = 'Suggeriment aquí...';
+const botonAfegir = document.createElement('button');
+botonAfegir.textContent = 'Afegir Suggeriment';
+const listar = document.createElement('ul');
+document.body.appendChild(creacio);
+document.body.appendChild(botonAfegir);
+document.body.appendChild(listar);
+
+botonAfegir.addEventListener("click", function() {
+    const escriure = document.createElement('li');
+    escriure.textContent = creacio.value;
+
+    const botonRealitzat = document.createElement('button');
+    botonRealitzat.textContent = 'Realitzat';
+    botonRealitzat.addEventListener('click', function() {
+        escriure.classList.toggle('realitzat');
+    });
+
+    const botonBorrar = document.createElement('button');
+    botonBorrar.textContent = 'Eliminar';
+    botonBorrar.addEventListener('click', function() {
+        listar.removeChild(escriure);
+    });
+
+    escriure.appendChild(botonRealitzat);
+    escriure.appendChild(botonBorrar);
+    listar.appendChild(escriure);
+});
+
+const style = document.createElement('style');
+style.textContent = `
+    .realitzat {
+        color: red;
+    }
+`;
+document.head.appendChild(style);
