@@ -68,7 +68,7 @@ const creacio = document.createElement('input');
 creacio.type = 'text';
 creacio.placeholder = 'Suggeriment aquí...';
 const botonAfegir = document.createElement('button');
-botonAfegir.textContent = 'Afegir Suggeriment';
+botonAfegir.textContent = 'Afegir Tarea';
 const listar = document.createElement('ul');
 document.body.appendChild(creacio);
 document.body.appendChild(botonAfegir);
